@@ -541,8 +541,10 @@
 
         // ---- Display results ----
         function displayResults(data) {
-            if (data.original_image) {
-                document.getElementById('originalImage').src = data.original_image;
+            // Show annotated image (with bounding boxes) if available, else original
+            const imgSrc = (data.annotated_image) ? data.annotated_image : data.original_image;
+            if (imgSrc) {
+                document.getElementById('originalImage').src = imgSrc;
             }
             document.getElementById('caption').textContent = data.caption || 'No caption available.';
             document.getElementById('readAloudBtn').style.display = 'block';
